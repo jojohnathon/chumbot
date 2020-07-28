@@ -24,13 +24,13 @@ for(const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 client.on('ready', () => {
-	console.log('Bot has come online.');
+console.log('Bot has come online.');
     client.user.setStatus('available')
     client.user.setPresence({
         game: {
-            name: 'with depression',
-            type: "STREAMING",
-            url: "https://www.twitch.tv/monstercat"
+            name: '!help',
+            type: "Playing",
+            url: "https://discordapp.com/"
         }
 	});
 });
