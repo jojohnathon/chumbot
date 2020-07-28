@@ -1,4 +1,5 @@
-config
+config.json
 node_modules
 package-lock.json
 bot.code-workspace
+.eslintrc.json
