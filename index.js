@@ -1,67 +1,83 @@
+/* eslint-disable space-before-blocks */
+/* eslint-disable no-empty */
 /* eslint-disable indent */
+const fs = require('fs');
 const Discord = require('discord.js');
-
-const bot = new Discord.Client();
-
-const prefix = process.env.prefix;
-
-// const config = require('./config.json');
-
-const { MessageEmbed } = require('discord.js');
-
+// eslint-disable-next-line no-unused-vars
 const ping = require('minecraft-server-util');
 
-const fs = require('fs');
+const prefix = process.env.prefix;
+// eslint-disable-next-line no-unused-vars
+const { MessageEmbed } = require('discord.js');
 
-bot.commands = new Discord.Collection();
+
+const client = new Discord.Client();
+client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+
 for(const file of commandFiles) {
 	const command = require(`./commands/${file}`);
-
-	bot.commands.set(command.name, command);
+	client.commands.set(command.name, command);
 }
 	
-
-bot.on('ready', () =>{
+const cooldowns = new Discord.Collection();
+client.on('ready', () =>{
 	console.log('Bot has come online.');
 });
 
 
-bot.on('message', message =>{
+client.on('message', message => {
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-	const args = message.content.substring(prefix.length).split(' ')
- ;
-	switch(args[0]) {
-	case 'mc':
+	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const commandName = args.shift().toLowerCase();
 
-        if(!args[1]) return message.channel.send('You must type a minecraft server ip');
-		ping(args[1], parseInt(25565), (error, response) =>{
-			if(error) return message.channel.send('server is poo poo');
-			const Embed = new MessageEmbed()
-				.setTitle('Server Status')
-				.addField('Server IP', response.host)
-				.addField('Server Version', response.version)
-				.addField('Online Players', response.onlinePlayers)
-				.addField('Max Players', response.maxPlayers);
+	const command = client.commands.get(commandName)
+		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-			message.channel.send(Embed);
-		});
-		break;
+	if (!command) return;
 
+	if (command.guildOnly && message.channel.type !== 'text') {
+		return message.reply('I can\'t execute that command inside DMs!');
 	}
 
+	if (command.args && !args.length) {
+		let reply = `You didn't provide any arguments, ${message.author}!`;
+
+		if (command.usage) {
+			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+		}
+
+		return message.channel.send(reply);
+	}
+
+	if (!cooldowns.has(command.name)) {
+		cooldowns.set(command.name, new Discord.Collection());
+	}
+
+	const now = Date.now();
+	const timestamps = cooldowns.get(command.name);
+	const cooldownAmount = (command.cooldown || 3) * 1000;
+
+	if (timestamps.has(message.author.id)) {
+		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+
+		if (now < expirationTime) {
+			const timeLeft = (expirationTime - now) / 1000;
+			return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
+		}
+	}
+
+	timestamps.set(message.author.id, now);
+	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+
+	try {
+		command.execute(message, args);
+	} catch (error) {
+		console.error(error);
+		message.reply('there was an error trying to execute that command!');
+	}
 });
 
-bot.on('message', message =>{
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
- 
-    const args = message.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase();
- 
-    if(command === 'ping') {
-        bot.commands.get('ping').execute(message, args);
-    } 
-});
-
-bot.login(process.env.token);
+client.login('NzI3MzQwOTAzMDc2OTg2OTgw.Xvqc2Q.lqgR2athIcR19EW8nS0X0cze6fs');
