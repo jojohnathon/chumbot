@@ -24,7 +24,7 @@ for(const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 client.on("ready", () => {
-	client.user.setActivity(`Use f!help.`, {type: "playing"}); 
+	client.user.setActivity('big peepee', { type: 'PLAYING' });
 	});
 
 client.on('message', message => {
