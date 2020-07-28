@@ -22,14 +22,21 @@ for(const file of commandFiles) {
 }
 	
 const cooldowns = new Discord.Collection();
-client.on('ready', () =>{
+
+client.on('ready', () => {
+    bot.user.setStatus('available')
+    bot.user.setPresence({
+        game: {
+            name: 'with depression',
+            type: "STREAMING",
+            url: "https://www.twitch.tv/monstercat"
+        }
+	});
 	console.log('Bot has come online.');
 });
 
-
 client.on('message', message => {
 	client.user.setActivity("Game"); 
-
 	
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
