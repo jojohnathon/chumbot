@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 /* eslint-disable no-mixed-spaces-and-tabs */
-const { prefix } = require('../config.json');
+const prefix = process.env.prefix;
 
 module.exports = {
 	name: 'help',
