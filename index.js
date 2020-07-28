@@ -28,15 +28,9 @@ client.on('ready', () =>{
 
 
 client.on('message', message => {
-	client.user.setStatus('available')
-    client.user.setPresence({
-        game: {
-            name: 'with depression',
-            type: "STREAMING",
-            url: "https://www.twitch.tv/monstercat"
-        }
-    });
+	client.user.setActivity("Game"); 
 
+	
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
