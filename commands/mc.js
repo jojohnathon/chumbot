@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+const ping = require('minecraft-server-util');
 module.exports = {
 	name: 'mc',
 	aliases: ['server', 'info'],
