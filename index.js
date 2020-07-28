@@ -25,7 +25,7 @@ const cooldowns = new Discord.Collection();
 
 client.on('ready', () => {
 console.log('Bot has come online.');
-    client.user.setStatus('available')
+    client.user.setActivity('available')
     client.user.setPresence({
         game: {
             name: '!help',
