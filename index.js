@@ -23,17 +23,9 @@ for(const file of commandFiles) {
 	
 const cooldowns = new Discord.Collection();
 
-client.on('ready', () => {
-console.log('Bot has come online.');
-    client.user.setActivity('available')
-    client.user.setPresence({
-        game: {
-            name: '!help',
-            type: "Playing",
-            url: "https://discordapp.com/"
-        }
+client.on("ready", () => {
+	client.user.setActivity(`Use f!help.`, {type: "playing"}); 
 	});
-});
 
 client.on('message', message => {
 	client.user.setActivity("Game"); 
