@@ -5,6 +5,8 @@ const bot = new Discord.Client();
 
 const prefix = process.env.prefix;
 
+// const config = require('./config.json');
+
 const { MessageEmbed } = require('discord.js');
 
 const ping = require('minecraft-server-util');
@@ -17,7 +19,7 @@ bot.on('ready', () =>{
 
 bot.on('message', message =>{
 
-	const args = message.content.substring(prefix.length).split(' ')
+	const args = message.content.substring(process.env.prefix.length).split(' ')
  ;
 	switch(args[0]) {
 	case 'mc':
