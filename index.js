@@ -24,6 +24,7 @@ for(const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 client.on('ready', () => {
+	console.log('Bot has come online.');
     client.user.setStatus('available')
     client.user.setPresence({
         game: {
@@ -32,7 +33,6 @@ client.on('ready', () => {
             url: "https://www.twitch.tv/monstercat"
         }
 	});
-	console.log('Bot has come online.');
 });
 
 client.on('message', message => {
