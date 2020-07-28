@@ -1,2 +1,2 @@
 # discordbot
-no
+just copied and pasted code
