@@ -24,8 +24,8 @@ for(const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 client.on('ready', () => {
-    bot.user.setStatus('available')
-    bot.user.setPresence({
+    client.user.setStatus('available')
+    client.user.setPresence({
         game: {
             name: 'with depression',
             type: "STREAMING",
