@@ -1,5 +1,5 @@
 module.exports = {
-	name: 'ping',
+	name: 'bruh',
 	description: 'reacts with bruh when someone says bruh',
 	execute(message) {
 		if (message.content === 'bruh') {
