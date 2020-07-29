@@ -37,9 +37,9 @@ client.on("message", message => {
 
 	if (message.content.match(/chum/i)) {
 		try {
-			await.message.react('');
-			await.message.react('');
-			await.message.react('');
+			await.message.react('🇨');
+			await.message.react('u');
+			await.message.react('m');
 		} catch (error) {
 			console.error('One of the emojis failed to react.')
 		}
