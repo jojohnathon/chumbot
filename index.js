@@ -35,6 +35,16 @@ client.on("message", message => {
 		message.react('🗿');
 	}
 
+	if (message.content.match(/chum/i)) {
+		try {
+			await.message.react('');
+			await.message.react('');
+			await.message.react('');
+		} catch (error) {
+			console.error('One of the emojis failed to react.')
+		}
+	}
+
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
