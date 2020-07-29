@@ -23,13 +23,18 @@ for(const file of commandFiles) {
 	
 const cooldowns = new Discord.Collection();
 
-client.on("ready", () => {
-	client.user.setActivity('big peepee', { type: 'PLAYING' });
-	});
+client.once('ready', () => {
+	console.log('Ready!');
+});
 
-client.on('message', message => {
-	client.user.setActivity("Game"); 
+client.on("message", message => {
+	client.user.setActivity('!help', { type: 'PLAYING' });
 	
+	if (message.content.match(/bruh/i))
+	{
+		message.react('🗿');
+	}
+
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
@@ -80,6 +85,9 @@ client.on('message', message => {
 		console.error(error);
 		message.reply('there was an error trying to execute that command!');
 	}
+
+
+
 });
 
-client.login(process.env.token);
+client.login('NzI3MzQwOTAzMDc2OTg2OTgw.XvqbAA.sDCHlNgMwpEjB5omKVw4m4NiGCo');
