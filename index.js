@@ -37,9 +37,9 @@ client.on("message", message => {
 
 	if (message.content.match(/chum/i)) {
 		try {
-			message.react('\:regional_indicator_c:');
-			message.react('\:regional_indicator_u:');
-			message.react('\:regional_indicator_m:');
+			message.react('🇨');
+			message.react('🇺');
+			message.react('🇲');
 		} catch (error) {
 			console.error('One of the emojis failed to react.')
 		}
