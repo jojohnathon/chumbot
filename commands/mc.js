@@ -7,10 +7,9 @@ module.exports = {
 	description: 'checks server stuff',
 	usage: '<server>',
 	execute(message, args) {
-		const arg = message.content.substring(process.env.prefix.length).split(' ')
- ;
+		const arg = message.content.substring(process.env.prefix.length).split(' ');
 		switch(arg[0]) {
-		case 'mc':
+		case 'mc', 'server', 'info':
 
 			if(!arg[1]) return message.channel.send('You must type a minecraft server ip');
 			ping(arg[1], parseInt(25565), (error, response) =>{
