@@ -1,9 +1,8 @@
 module.exports = {
-	name: 'ping',
-	cooldown: 5,
-	description: 'Ping!',
+	name: 'move',
+	description: 'moves people!',
 	execute(message) {
-		Discord.GuildMember.setVoiceChannel(719312319808798810);
+		client.GuildMember.setVoiceChannel(719312319808798810);
 	},
 };
 
