@@ -20,7 +20,7 @@ for(const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 }
-	
+
 const cooldowns = new Discord.Collection();
 
 client.once('ready', () => {
@@ -28,7 +28,7 @@ client.once('ready', () => {
 });
 
 client.on("message", message => {
-	client.user.setActivity('!help', { type: 'PLAYING' });
+	client.user.setActivity('!help', { type: 'LISTENING' });
 	
 	if (message.content.match(/bruh/i))
 	{
