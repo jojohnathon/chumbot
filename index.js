@@ -30,21 +30,6 @@ client.once('ready', () => {
 client.on("message", message => {
 	client.user.setActivity('!help', { type: 'LISTENING' });
 	
-	if (message.content.match(/bruh/i))
-	{
-		message.react('🗿');
-	}
-
-	if (message.content.match(/chum/i)) {
-		try {
-			message.react('🇨');
-			message.react('🇺');
-			message.react('🇲');
-		} catch (error) {
-			console.error('One of the emojis failed to react.')
-		}
-	}
-
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
@@ -96,7 +81,23 @@ client.on("message", message => {
 		message.reply('there was an error trying to execute that command!');
 	}
 
+	if (message.content.match(/bruh/i))
+		{
+			message.react('🗿');
+		}
 
+		if (message.content.match(/chum/i)) {
+			try {
+				message.react('🇨');
+				message.react('🇺');
+				message.react('🇲');
+			} catch (error) {
+				console.error('One of the emojis failed to react.')
+			}
+		}
+	if (message.content.startsWith ("water monkey")) {
+		message.channel.send ("water monke", {files: ["./images/watermonke.png"]});
+	}
 
 });
 
