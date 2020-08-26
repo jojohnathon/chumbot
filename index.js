@@ -95,7 +95,7 @@ client.on("message", message => {
 				console.error('One of the emojis failed to react.')
 			}
 		}
-	if (message.content.startsWith ("water monkey")) {
+	if (message.content.match(/water monkey/i)) {
 		message.channel.send ("water monke", {files: ["./images/watermonke.png"]});
 	}
 
