@@ -6,8 +6,5 @@ module.exports = {
 	execute(message) {
         const attachment = new Attachment('./images/watermonke.png');
         message.Channel.send(message.author, attachment2)
-        if (error) {
-            console.log(error);
-        }
        }
 	};

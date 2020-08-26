@@ -6,8 +6,8 @@ module.exports = {
 	aliases: ['server', 'info'],
 	description: 'checks server stuff',
 	usage: '<server>',
-	execute(message, args) {
-		const arg = message.content.substring(process.env.prefix.length).split(' ');
+	execute(message) {
+		const arg = message.content.substring(prefix.length).split(' ');
 		switch(arg[0]) {
 		case 'mc', 'server', 'info':
 
