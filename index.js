@@ -84,6 +84,7 @@ client.on("message", message => {
 	if (message.content.match(/bruh/i))
 		{
 			message.react('🗿');
+			message.Channel.send ('water monke', {files: ['./images/watermonke.js']})
 		}
 
 		if (message.content.match(/chum/i)) {
