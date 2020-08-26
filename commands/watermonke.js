@@ -1,7 +1,7 @@
 const { DiscordAPIError, Channel } = require("discord.js");
 
 module.exports = {
-	name: 'water monkey',
+	name: 'watermonkey',
 	description: 'water monkey',
 	execute(message) {
         const file = new Discord.MessageAttachment('../images/watermonke.png');
