@@ -7,7 +7,7 @@ module.exports = {
 	description: 'checks server stuff',
 	usage: '<server>',
 	execute(message) {
-		const arg = message.content.substring(prefix.length).split(' ');
+		const arg = message.content.substring(proccess.env.prefix.length).split(' ');
 		switch(arg[0]) {
 		case 'mc', 'server', 'info':
 
